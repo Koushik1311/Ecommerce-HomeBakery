@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Add Product</title>
+  </head>
+  <body>
+    <div class="container mx-auto font-mono">
+      <div class="grid grid-cols-8 my-9">
+        <div class="col-start-3 col-span-4 border-2">
+          <div class="m-9">
+            <p class="text-4xl">Category</p>
+          </div>
+          <form
+            action="#"
+            th:action="@{/admin/products/add}"
+            method="post"
+            th:object="${productDTO}"
+            enctype="multipart/form-data"
+          >
+            <div class="p-9">
+              <input type="hidden" th:field="*{id}" name="id" />
+              <div class="grid grid-cols-2">
+                <label for="name" class="text-xl">Name:</label>
+                <input
+                  type="text"
+                  required
+                  th:field="*{name}"
+                  name="name"
+                  class="text-sm px-3 py-2 border border-slate-300 rounded-md placeholder-slate-400 focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500 invalid:border-pink-500 invalid:text-pink-600 valid:border-green-500"
+                />
+              </div>
+              <div class="my-3 grid grid-cols-2">
+                <label for="name" class="text-xl">Category:</label>
+                <select
+                  th:field="*{categoryId}"
+                  name="category"
+                  class="text-sm px-3 py-2 border border border-slate-300 rounded-md placeholder-slate-400 focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500 invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500 valid:border-green-500"
+                >
+                  <option
+                    th:each="category :${categories}"
+                    th:value="${category.id}"
+                    th:text="${category.name}"
+                    class="w-32"
+                  />
+                </select>
+              </div>
+              <div class="my-3 grid grid-cols-2">
+                <label for="productImage" class="text-xl">Choose file:</label>
+                <div>
+                  <input
+                    type="file"
+                    name="productImage"
+                    accept="image/jpeg, image/png"
+                    id="productImage"
+                  />
+                  <input
+                    type="hidden"
+                    name="imgName"
+                    th:value="${productDTO.imageName}"
+                  />
+                </div>
+              </div>
+              <div class="my-3 grid grid-cols-2">
+                <label for="price" class="text-xl">Price:</label>
+                <input
+                  type="number"
+                  required
+                  th:field="*{price}"
+                  name="price"
+                  class="text-sm px-3 py-2 border border border-slate-300 rounded-md placeholder-slate-400 focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500 invalid:border-pink-500 invalid:text-pink-600 valid:border-green-500"
+                />
+              </div>
+              <div class="my-3 grid grid-cols-2">
+                <label for="description" class="text-xl">Description:</label>
+                <textarea
+                  type="text"
+                  required
+                  th:field="*{description}"
+                  name="description"
+                  class="text-sm px-3 py-2 border border border-slate-300 rounded-md placeholder-slate-400 focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500 invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500 valid:border-green-500"
+                />
+              </div>
+              <div class="my-9">
+                <button
+                  type="submit"
+                  class="p-2 w-28 rounded-full border-2 border-slate-900 bg-slate-900 text-white font-bold text-xl transition ease-in-out duration-300 hover:bg-white hover:text-black"
+                >
+                  Save
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

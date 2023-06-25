@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Categories</title>
+  </head>
+  <body>
+    <div class="container mx-auto font-mono">
+      <!-- Back button & Add Category button: Back button returns to Admin home page & Add Category button returns a form for adding category -->
+
+      <!-- Back -->
+      <div class="flex my-9">
+        <a href="#" th:href="@{/admin}">
+          <button
+            class="p-1 border-2 border-slate-900 rounded-l-full bg-slate-900 w-24 text-white font-bold text-center hover:border-2 hover:border-slate-900 hover:bg-white hover:text-black"
+          >
+            Back
+          </button>
+        </a>
+
+        <!-- Add Category -->
+        <a href="#" th:href="@{/admin/categories/add}">
+          <button
+            class="ml-1 p-1 px-9 border-2 border-slate-900 rounded-r-full bg-slate-900 w-30 text-white font-bold text-center hover:border-2 hover:border-slate-900 hover:bg-white hover:text-black"
+          >
+            Add Category
+          </button>
+        </a>
+      </div>
+
+      <!-- Creating a table for category data -->
+      <div class="grid grid-cols-12">
+        <!-- ID -->
+        <p
+          class="w-full p-3 justify-center justify-self-center mx-auto bg-slate-900 text-white text-center text-lg font-bold border-r-2"
+        >
+          ID
+        </p>
+
+        <!-- Category Name -->
+        <p
+          class="col-span-8 w-full p-3 mx-auto bg-slate-900 text-white text-start text-lg font-bold border-r-2"
+        >
+          Category Name
+        </p>
+
+        <!-- Action -->
+        <p
+          class="col-span-3 w-full p-3 justify-center justify-self-center mx-auto bg-slate-900 text-white text-center text-lg font-bold"
+        >
+          Action
+        </p>
+      </div>
+
+      <div th:each="category: ${categories}" class="my-3 grid grid-cols-12">
+        <!-- ----------------------------- -->
+        <!-- Category Data -->
+        <!-- Category ID -->
+        <p th:text="${category.id}"
+          class="w-full p-3 justify-center justify-self-center mx-auto text-slate-900 text-center text-lg"
+        >
+          
+        </p>
+
+        <!-- Category Name -->
+        <p th:text="${category.name}"
+          class="col-span-8 w-full p-3 justify-center justify-self-center mx-auto text-slate-900 text-lg"
+        >
+          Cookie
+        </p>
+        <!-- Action: Update & Delete -->
+        <div
+          class="col-span-3 w-full p-2 justify-center justify-self-center mx-auto text-center"
+        >
+          <div class="grid grid-cols-2 mx-6 gap-3 text-white">
+            <a
+              href="#"
+              th:href="@{/admin/categories/update(id=${category.id})}"
+              class="w-28 p-1 rounded-full border-2 border-yellow-300 text-slate-900 font-bold hover:rounded-full hover:bg-slate-900 hover:text-white"
+            >
+              Update
+            </a>
+            <a
+              href="#"
+              th:href="@{/admin/categories/delete(id=${category.id})}" onclick="if(!confirm('Are you sure you want to delete this Category'))"
+              class="w-28 p-1 rounded-full border-2 border-rose-600 text-slate-900 font-bold hover:rounded-full hover:bg-slate-900 hover:text-white"
+            >
+              Delete
+            </a>
+          </div>
+        </div>
+    </div>
+  </body>
+</html>

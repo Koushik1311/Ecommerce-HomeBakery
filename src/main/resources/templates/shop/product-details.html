@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Products</title>
+  </head>
+  <body>
+    <div class="container mx-auto font-mono">
+      <!-- Navbar -->
+      <!-- product details -->
+      <div>
+        <p th:text="${product.name}"></p>
+        <a href="" th:href="@{/shop/product/addtocart(id=${product.id})}"
+          >Add to cart</a
+        >
+      </div>
+    </div>
+  </body>
+</html>

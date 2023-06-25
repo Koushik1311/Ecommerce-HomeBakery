@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Users</title>
+  </head>
+  <body>
+    <div class="container mx-auto font-mono">
+      <!-- Back button & Add User button Back button returns to Admin home page & Add User button returns a form for adding users -->
+
+      <!-- Back -->
+      <div class="flex my-9">
+        <a href="#" th:href="@{/admin}">
+          <button
+            class="p-1 border-2 border-slate-900 rounded-l-full bg-slate-900 w-24 text-white font-bold font-bold text-center hover:border-2 hover:border-slate-900 hover:bg-white hover:text-black"
+          >
+            Back
+          </button>
+        </a>
+
+        <!-- Add User -->
+        <a href="#">
+          <button
+            class="ml-1 p-1 px-9 border-2 border-slate-900 rounded-r-full bg-slate-900 w-30 text-white font-bold text-center hover:border-2 hover:border-slate-900 hover:bg-white hover:text-black"
+          >
+            Add User
+          </button>
+        </a>
+      </div>
+
+      <!-- Creating a table for user data -->
+      <div class="grid grid-cols-12">
+        <!-- ID -->
+        <p
+          class="w-full p-3 justify-center justify-self-center mx-auto bg-slate-900 text-white text-center text-lg font-bold border-r-2"
+        >
+          ID
+        </p>
+
+        <!-- Name -->
+        <p
+          class="col-span-3 w-full p-3 justify-center justify-self-center mx-auto bg-slate-900 text-white text-start text-lg font-bold border-r-2"
+        >
+          Name
+        </p>
+
+        <!-- Email -->
+        <p
+          class="col-span-3 w-full p-3 justify-center justify-self-center mx-auto bg-slate-900 text-white text-start text-lg font-bold border-r-2"
+        >
+          Email
+        </p>
+
+        <!-- Role -->
+        <p
+          class="col-span-2 w-full p-3 justify-center justify-self-center mx-auto bg-slate-900 text-white text-center text-lg font-bold border-r-2"
+        >
+          Role
+        </p>
+
+        <!-- Action -->
+        <p
+          class="col-span-3 w-full p-3 justify-center justify-self-center mx-auto bg-slate-900 text-white text-center text-lg font-bold"
+        >
+          Action
+        </p>
+      </div>
+
+      <div
+        th:each="user, iStat : ${users}"
+        class="my-3 grid grid-cols-12 grid-rows-6"
+      >
+        <!-- ----------------------------- -->
+        <!-- User Data -->
+        <!-- User ID -->
+        <p
+          th:text="${iStat.index + 1}"
+          class="w-full p-3 justify-center justify-self-center mx-auto text-slate-900 text-center text-lg"
+        ></p>
+
+        <!-- User's Name -->
+        <p
+          th:text="${user.firstName + user.lastName}"
+          class="col-span-3 w-full p-3 justify-center justify-self-center mx-auto text-slate-900 text-lg"
+        ></p>
+
+        <!-- User Email -->
+        <p
+          th:text="${user.email}"
+          class="col-span-3 w-full p-3 justify-center justify-self-center mx-auto text-slate-900 text-lg"
+        ></p>
+
+        <!-- User Role -->
+        <p
+          class="col-span-2 w-full p-3 justify-center justify-self-center mx-auto text-slate-900 text-lg"
+        ></p>
+
+        <!-- Action: Update & Delete -->
+        <div
+          class="col-span-3 w-full p-2 justify-center justify-self-center mx-auto text-center"
+        >
+          <div class="grid grid-cols-2 mx-6 gap-3 text-white">
+            <a
+              href="#"
+              class="w-28 p-1 rounded-full border-2 border-yellow-300 text-slate-900 font-bold hover:rounded-full hover:bg-slate-900 hover:text-white"
+            >
+              Update
+            </a>
+            <a
+              href="#"
+              class="w-28 p-1 rounded-full border-2 border-rose-600 text-slate-900 font-bold hover:rounded-full hover:bg-slate-900 hover:text-white"
+            >
+              Delete
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Cart</title>
+  </head>
+  <body>
+    <div class="container mx-auto grid grid-cols-6">
+      <!-- Product Details -->
+      <div class="col-start-1 col-end-5 border-2">
+        <div class="flex border-2" th:each="item, iStat : ${cart}">
+          <div>
+            <img
+              th:src="@{${'/productImages/' + item.imageName}}"
+              class="object-cover h-56 w-56"
+            />
+          </div>
+          <div>
+            <h5 th:text="${item.name}"></h5>
+          </div>
+          <div>
+            <p th:text="${item.price}"></p>
+          </div>
+          <div>
+            <a
+              href="#"
+              th:href="@{/cart/remove(index=${iStat.index})}"
+              type="button"
+              >Remove
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Order Summery -->
+      <div class="col-span-2 border-2">
+        <div>
+          <span
+            >Total Amount:
+            <h5 th:text="${total}"></h5
+          ></span>
+
+          <span
+            >Total Product:
+            <p th:text="${cartCount}"></p
+          ></span>
+
+          <div class="m-3">
+            <a
+              th:href="@{/checkout}"
+              class="rounded-md py-2 px-3 border border-slate-800"
+            >
+              Checkout
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

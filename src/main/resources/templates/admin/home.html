@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns="http://thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Admin</title>
+  </head>
+  <body>
+    <div class="font-mono">
+      <!-- A banner which says Welcome Back {Admin} -->
+      <div
+        class="flex items-center justify-center w-screen-full h-[40vh] bg-slate-900"
+      >
+        <p class="text-white text-3xl">Welcome Back Admin</p>
+      </div>
+
+      <!-- Categories, Product & Users -->
+      <div class="container mx-auto my-9 px-24 grid grid-cols-3 gap-9">
+        <!-- Categories -->
+        <div
+          class="border-2 border-slate-900 text-center justify-center bg-slate-900 transition ease-in-out duration-300 hover:bg-white"
+        >
+          <a href="#" th:href="@{admin/categories}">
+            <p class="p-9 text-white font-bold text-xl hover:text-black">
+              Categories
+            </p>
+          </a>
+        </div>
+
+        <!-- Products -->
+        <div
+          class="border-2 border-slate-900 text-center justify-center bg-slate-900 transition ease-in-out duration-300 hover:bg-white"
+        >
+          <a href="#" th:href="@{admin/products}">
+            <p class="p-9 text-white font-bold text-xl hover:text-black">
+              Products
+            </p>
+          </a>
+        </div>
+
+        <!-- Users -->
+        <div
+          class="border-2 border-slate-900 text-center justify-center bg-slate-900 transition ease-in-out duration-300 hover:bg-white"
+        >
+          <a
+            href="#"
+            th:href="@{admin/users}"
+            sec:authorize="hasRole('ROLE_ADMIN')"
+          >
+            <p class="p-9 text-white font-bold text-xl hover:text-black">
+              Users
+            </p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

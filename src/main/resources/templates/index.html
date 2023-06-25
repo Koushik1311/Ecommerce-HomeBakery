@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:th="http://thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Home</title>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="mt-6 fixed top-0 left-0 right-0 bg-white">
+      <div class="grid grid-cols-8">
+        <!-- Name of the Business or Logo -->
+        <div class="col-start-2">
+          <h1>HomeBakery</h1>
+        </div>
+
+        <!-- NavBar Links -->
+        <div class="col-start-5 col-end-8 grid grid-cols-6">
+          <a th:href="@{/}" class="">HOME</a>
+          <a th:href="@{/shop}" class="">SHOP</a>
+          <a th:href="@{/about}" class="">ABOUT</a>
+          <a th:href="@{/contact}" class="">CONTACT</a>
+          <a th:href="@{/register}" class="">SIGN UP</a>
+          <a th:href="@{/login}" class="">LOG IN</a>
+        </div>
+      </div>
+    </nav>
+    <!-- content -->
+    <div class="mt-12">
+      <div sec:authorize="isAuthenticated()">
+        <form action="#" th:action="@{/logout}" method="post">
+          <button type="submit">Logout</button>
+        </form>
+        <div>Logged user: <span sec:authentication="name"></span></div>
+      </div>
+    </div>
+  </body>
+</html>
